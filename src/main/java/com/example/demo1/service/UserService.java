@@ -1,20 +1,33 @@
 package com.example.demo1.service;
 
 import com.example.demo1.Dao.UserDao;
-import com.example.demo1.Dao.UserDao2;
 import com.example.demo1.entity.Users;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service("UserService")
 public class UserService {
     @Autowired
-    private UserDao2 userDao2;
     private UserDao userDao;
     public Users selectService(int id){
-        return userDao2.getUserById(id);
+        return userDao.getUserById(id);
     }
-//    public void save(Users user){
-//        userDao.insert(user);
-//    }
+    public int add(String name,String password){
+        return userDao.add(name,password);
+    }
+    public Users verifyUser(String username){
+        return userDao.verifyUser(username);
+    }
+    public int updateByName(String username,String password){
+        return userDao.updateByName(username,password);
+    }
+
+    public int updateById(int id,String password){
+        return userDao.updateById(id,password);
+    }
+    public int delete(int id){
+        return userDao.delete(id);
+    }
+
 }
